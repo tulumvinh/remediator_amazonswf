@@ -1,7 +1,5 @@
 package com.netflix.winston.remediator.activities.swf.greeting;
 
-import com.netflix.skynet.remediator.activities.swf.greeting.IGreeterActivity;
-
 public class GreetingActivity  implements IGreeterActivity {
 
 	@Override

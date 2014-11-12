@@ -8,6 +8,7 @@ import com.amazonaws.services.simpleworkflow.AmazonSimpleWorkflowClient;
 import com.amazonaws.services.simpleworkflow.flow.ActivityWorker;
 import com.amazonaws.services.simpleworkflow.flow.WorkflowWorker;
 import com.netflix.winston.remediator.activities.swf.greeting.GreetingActivity;
+import com.netflix.winston.remediator.workflows.swf.greeting.GreeterWorkflow;
 
 public class GreeterWorker {
 	

@@ -1,9 +1,6 @@
 package com.netflix.winston.remediator.workflows.swf.greeting;
 
 import com.amazonaws.services.simpleworkflow.flow.core.Promise;
-import com.netflix.skynet.remediator.workflows.swf.greeting.GreeterActivitiesClient;
-import com.netflix.skynet.remediator.workflows.swf.greeting.GreeterActivitiesClientImpl;
-
 
 public class GreeterWorkflow implements IGreeterWorkflow {
 
