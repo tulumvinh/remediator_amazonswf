@@ -17,7 +17,7 @@ import com.amazonaws.services.simpleworkflow.flow.annotations.ActivityRegistrati
  * 2. Direct AWS flow framework to use this interface definition to generate an "activities client class".
  */
 @ActivityRegistrationOptions(defaultTaskScheduleToStartTimeoutSeconds = 300, defaultTaskStartToCloseTimeoutSeconds = 10) //specifies how long the activity task can be queue, set to 5 miutes.  Also, max time the activity can take to perform the task (10 secs)
-@Activities(version="1.0") //allows us and AWS SWF to keep track different generations of this activity implementation
+@Activities(version="1.01") //allows us and AWS SWF to keep track different generations of this activity implementation
 public interface IGreeterActivity {
 	   public String getName();
 	   public String getGreeting(String name);

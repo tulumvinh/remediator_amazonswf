@@ -23,6 +23,6 @@ import com.amazonaws.services.simpleworkflow.flow.annotations.WorkflowRegistrati
 @WorkflowRegistrationOptions(defaultExecutionStartToCloseTimeoutSeconds = 3600) //max time the workflow can run (1 hour)
 public interface IGreeterWorkflow {
 
-	@Execute(version = "1.0") //identifies the "entry / starting" point of workflow to Amazon SWF engine.
+	@Execute(version = "1.01") //identifies the "entry / starting" point of workflow to Amazon SWF engine.
 	public void greet();
 }

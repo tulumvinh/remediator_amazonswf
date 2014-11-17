@@ -1,6 +1,8 @@
 package com.netflix.winston.remediator.workflows.swf.greeting;
 
 import com.amazonaws.services.simpleworkflow.flow.core.Promise;
+import com.netflix.winston.remediator.activities.swf.greeting.IGreeterActivityClient;
+import com.netflix.winston.remediator.activities.swf.greeting.IGreeterActivityClientImpl;
 
 public class GreeterWorkflow implements IGreeterWorkflow {
 
@@ -14,7 +16,7 @@ public class GreeterWorkflow implements IGreeterWorkflow {
 	 * name (IGreetActivity).  
 	 *
 	 */
-	private GreeterActivitiesClient activity = new GreeterActivitiesClientImpl();
+	private IGreeterActivityClient activity = new IGreeterActivityClientImpl();
 	
 	@Override
 	public void greet() {
@@ -42,7 +44,7 @@ public class GreeterWorkflow implements IGreeterWorkflow {
 	      * @return Void - even though this activity task does not return any value, use Void to determine when SWF has completed the task.  Promise<Void> will initially
 	      * be in an "unready state", after task completes, SWF will set it to "ready state".
 	      */
-	     Promise<Void> activity.say(greeting);
+	     activity.say(greeting);
 	}	
 	
 }
