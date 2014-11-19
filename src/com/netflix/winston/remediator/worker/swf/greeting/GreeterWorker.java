@@ -30,26 +30,32 @@ public class GreeterWorker {
 		IAMCredential onInstanceCredentials = new IAMCredential();
 		AWSCredentials awsCredentials = onInstanceCredentials.getCredentials();
 		
-		//== get handle to the SWF workflow
+		//== get handle to the SWF
 		AmazonSimpleWorkflow service = new AmazonSimpleWorkflowClient(awsCredentials, config);
 		service.setEndpoint("https://swf.us-west-2.amazonaws.com");
 		
 		String domain = "winston_remeditator_poc";
 		String taskListToPoll = "HelloWorldWorkflowList"; //a task lists that SWF uses to manage communication between the woflow and activities workers.
 		
-		//== bind the worker to the activity
+		/* == bind the worker to the activity
+		 * This worker will handle communication between SWF and the activities implementation by polling the appropriate SWF tasks lists for tasks,
+		 * executing the appropriate method of each task, and managing the data flow.
+		 */
 		ActivityWorker aw = new ActivityWorker(service, domain, taskListToPoll);
 		try {
-			aw.addActivitiesImplementation(new GreetingActivity()); //binding worker to activity
+			aw.addActivitiesImplementation(new GreetingActivity()); //register activty with SWF
 		} catch (Exception e) {
 			throw new RuntimeException("Error in binding activity workder.  Msg: " + e.getLocalizedMessage(), e);
 		}
 		aw.start(); //start polling SWF for the "helloWorldList" task list.
 		
-		//== bind the worker to the workflow
+		/* == bind the worker to the workflow
+		 * This worker will handle communication between SWF and the workflow implementation by polling the appropriate SWF tasks lists for tasks,
+		 * executing the appropriate method of each task, and managing the data flow. 
+		 */
 		WorkflowWorker wfw = new WorkflowWorker(service, domain, taskListToPoll);
 		try {
-			wfw.addWorkflowImplementationType(GreeterWorkflow.class); //binding workder to workflow
+			wfw.addWorkflowImplementationType(GreeterWorkflow.class); //register workflow with SWF
 		} catch (Exception e) {
 			throw new RuntimeException("Error in binding workflow workder.  Msg: " + e.getLocalizedMessage(), e);
 		}
