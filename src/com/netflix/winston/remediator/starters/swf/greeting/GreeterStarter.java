@@ -32,7 +32,7 @@ public class GreeterStarter {
 		String domain = "winston_remeditator_poc";
 		
 		IGreeterWorkflowClientExternalFactory factory = new IGreeterWorkflowClientExternalFactoryImpl(service, domain);
-		IGreeterWorkflowClientExternal greeter = factory.getClient("workflow_exec_1.01_1"); //get the proxy for the workflow
+		IGreeterWorkflowClientExternal greeter = factory.getClient("workflow_exec_1.01_2"); //get the proxy for the workflow
 		greeter.greet(); //begin the workflow
 		
 		System.exit(0);
