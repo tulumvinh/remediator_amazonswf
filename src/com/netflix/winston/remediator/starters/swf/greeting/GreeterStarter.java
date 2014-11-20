@@ -17,6 +17,7 @@ import com.netflix.winston.remediator.workflows.swf.greeting.IGreeterWorkflowCli
  * 
  */
 public class GreeterStarter {
+	private static final String WORKFLOW_EXECUTION_ID = "workflow_exec_1.01_2";
 
 	public static void main(String[] args) {
 		ClientConfiguration config = new ClientConfiguration().withSocketTimeout(70*1000);
@@ -32,9 +33,9 @@ public class GreeterStarter {
 		String domain = "winston_remeditator_poc";
 		
 		IGreeterWorkflowClientExternalFactory factory = new IGreeterWorkflowClientExternalFactoryImpl(service, domain);
-		IGreeterWorkflowClientExternal greeter = factory.getClient("workflow_exec_1.01_2"); //get the proxy for the workflow
+		IGreeterWorkflowClientExternal greeter = factory.getClient(WORKFLOW_EXECUTION_ID); //get the proxy for the workflow
 		greeter.greet(); //begin the workflow
 		
-		System.exit(0);
+		System.out.println("Started workflox, execution id of \"" + WORKFLOW_EXECUTION_ID + "\", waiting for the worker and activity workers to execute the tasks.");
 	}
 }
