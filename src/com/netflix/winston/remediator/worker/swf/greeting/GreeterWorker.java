@@ -62,6 +62,7 @@ public class GreeterWorker {
 		wfw.start(); //start polling SWF for the "helloWorldList" task list
 		
 		System.out.println("Completed: 1. binding workflow and its activities to its workders.  2. \"workflow\" and \"activity\" workers are now polling SWF for task list to execute.");
+		System.exit(0);
 		
 	}
 	
