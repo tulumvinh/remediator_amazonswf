@@ -10,14 +10,19 @@ import com.netflix.winston.remediator.workflows.swf.greeting.IGreeterWorkflowCli
 import com.netflix.winston.remediator.workflows.swf.greeting.IGreeterWorkflowClientExternalFactoryImpl;
 
 /*
- * Amazon SWF hello world application, see http://docs.aws.amazon.com/amazonswf/latest/awsflowguide/getting-started-example-helloworldworkflow.html
+ * Amazon SWF hello world application, see http://docs.aws.amazon.com/amazonswf/latest/awsflowguide/getting-started-example-helloworldworkflow.html.
+ * Also, see http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-workflow-exec-lifecycle.html for a graphical explanation.
  * 
- * A means to start the workflow execution.
+ * An "actor" to start the workflow execution, also referred to as "workflow instance".  For this example, this actor is a stand-alone application.
  * 
  * 
  */
-public class GreeterStarter {
-	private static final String WORKFLOW_EXECUTION_ID = "workflow_exec_1.01_2";
+public class GreeterStarterActorApplication {
+	/*
+	id of the running workflow execution.  Remediator will auto generate this id and persist it in data store each time it runs the workflow.  Better yet, SWF gives you
+	a "runId" with each workflow execution (see http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-about-workflows.html and search for literal "runId").
+	*/
+	private static final String WORKFLOW_EXECUTION_ID = "workflow_exec_1.01_2"; 
 
 	public static void main(String[] args) {
 		ClientConfiguration config = new ClientConfiguration().withSocketTimeout(70*1000);
@@ -32,8 +37,8 @@ public class GreeterStarter {
 		
 		String domain = "winston_remeditator_poc";
 		
-		IGreeterWorkflowClientExternalFactory factory = new IGreeterWorkflowClientExternalFactoryImpl(service, domain);
-		IGreeterWorkflowClientExternal greeter = factory.getClient(WORKFLOW_EXECUTION_ID); //get the proxy for the workflow
+		IGreeterWorkflowClientExternalFactory factory = new IGreeterWorkflowClientExternalFactoryImpl(service, domain); //handle to the workflow client
+		IGreeterWorkflowClientExternal greeter = factory.getClient(WORKFLOW_EXECUTION_ID); //got the workflow client
 		greeter.greet(); //begin the workflow
 		
 		System.out.println("Started workflox, execution id of \"" + WORKFLOW_EXECUTION_ID + "\", waiting for the worker and activity workers to execute the tasks.");

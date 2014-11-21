@@ -4,7 +4,20 @@ import com.amazonaws.services.simpleworkflow.flow.core.Promise;
 import com.netflix.winston.remediator.activities.swf.greeting.IGreeterActivityClient;
 import com.netflix.winston.remediator.activities.swf.greeting.IGreeterActivityClientImpl;
 
-public class GreeterWorkflow implements IGreeterWorkflow {
+/*
+ * Implements the workflow coordination logic.  See http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-workflow-exec-lifecycle.html for a graphical explanation.
+ * 
+ * This actor controls the flow of activity tasks within a workflow execution.  When a change occurs during a workflow execution, such as completion of an activity task, SWF
+ * creates a decision task that contains the workflow history up to that point in time and assigns the task to this decider.  When this decider receives the decision task from SWF,
+ * it analyzes the workflow execution history to determine the next appropriate steps in the workflow execution.  Let me repeat this, this decider receives "decision" task from SWF
+ * when the workflow execution starts and each time a state change occurs in the workflow execution.  This decider will contiue to move the workflow execution forward by
+ * receiving decision tasks and responding to SWF with more decisions.  This process continues until the decier determines the workflow execution is complete.
+ * 
+ * 
+ * This decider communicates these steps back to SWF using "decisions".
+ * A "decision" is a SWF data type than can represent various next actions.  
+ */
+public class GreeterWorkflowDeciderActor implements IGreeterWorkflow {
 
 	/*
 	 * proxy to SWF to invoke activity tasks.  This proxy allows us to:

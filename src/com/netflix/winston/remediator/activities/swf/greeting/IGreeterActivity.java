@@ -4,9 +4,10 @@ import com.amazonaws.services.simpleworkflow.flow.annotations.Activities;
 import com.amazonaws.services.simpleworkflow.flow.annotations.ActivityRegistrationOptions;
 
 /*
- * Represents the steps (i.e. tasks) involve in the greeting workflow (i.e. saying "Hello World").
+ * Represents the steps involve in the workflow.
+ * *Note: conceptually, a task equates to an activity.
  * 
- * Each step (i.e. task) is performed by an activity method.
+ * Each step is performed by an activity method.
  *  
  * *Note: "activities" are independent of each other and can often be used by different workflows.  
  */

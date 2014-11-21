@@ -5,13 +5,17 @@ import com.amazonaws.services.simpleworkflow.flow.annotations.Workflow;
 import com.amazonaws.services.simpleworkflow.flow.annotations.WorkflowRegistrationOptions;
 
 /*
- * Represents the "coordinator" of the "greeting" workflow.  Coordinator includes:
+ * Represents the "coordinator" of the "greeting" flow.  Let me say this again, a workflow equates to a coordinator.  
+ * 
+ * Coordinator does the following:
  * - Execute the activity tasks (i.e. methods) in sequence in the correct order.
+ * *Note: conceptually, a task equates to an activity.
+ * 
  * - Execute each activity task with the correct data. 
  * 
- * This "coordinator" will execute the activity task in a linear workflow topology.  Specifically:
+ * This "coordinator" will execute the activity task in a certain, linear topology.  Specifically:
  * 
- * Call greeting workflow (start) --> getName -- name --> getGreeting -- greeting --> say  --> print greeting (finish workflow)
+ * Call greeting workflow (start) --> execute activity getName -- name --> execute activity getGreeting -- execute activity greeting --> execute activity say  --> print greeting (finish workflow)
  */
 
 
