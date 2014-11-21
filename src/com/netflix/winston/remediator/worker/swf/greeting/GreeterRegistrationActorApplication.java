@@ -35,7 +35,7 @@ public class GreeterRegistrationActorApplication {
 		/*
 		 * the name of the queue used by SQF.  This queue is used by the activity and workflow workers.
 		 */
-		String activityTasksToPoll = "HelloWorldWorkflowList"; 
+		String activityTasksToPoll = "HelloWorldWorkflowListFoo"; 
 		
 		/* == bind the worker to the activity
 		 * This activity worker is a process or a thread that performs the activity tasks that are part of the workflow.  Multiple activity workers can process
