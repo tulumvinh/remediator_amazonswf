@@ -90,7 +90,7 @@ public class GreeterRegistrationActorApplication {
 		 *  
 		 */
 		final String decisionTasksToPoll = "HelloWorldDecisionTasksQueue";
-		WorkflowWorker wfw = new WorkflowWorker(service, domain, decisionTasksToPoll);
+		WorkflowWorker wfw = new WorkflowWorker(service, domain, activityTasksToPoll);
 		try {
 			wfw.addWorkflowImplementationType(GreeterWorkflowDeciderActor.class); //register workflow with SWF
 		} catch (Exception e) {
